@@ -17,10 +17,14 @@ export class UsuarioComponent implements OnInit {
   ngOnInit(): void {}
 
   guardar(forma: NgForm) {
-
-    this.usuarioSvc.crearUsuario(this.usuario).subscribe(res=>{
-      console.log(res);
-    })
- 
+    if (this.usuario.id) {
+      this.usuarioSvc.actualizarUsuario(this.usuario).subscribe(res=> {
+        console.log(res);
+      });
+    } else {
+      this.usuarioSvc.crearUsuario(this.usuario).subscribe((res) => {
+        console.log(res);
+      });
+    } 
   }
 }

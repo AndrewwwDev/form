@@ -1,15 +1,26 @@
+import { UsuarioService } from './../../services/usuario.service';
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+
+import { UsuarioModel } from 'src/app/models/usuario.model';
 
 @Component({
   selector: 'app-usuario',
   templateUrl: './usuario.component.html',
-  styleUrls: ['./usuario.component.css']
+  styleUrls: ['./usuario.component.css'],
 })
 export class UsuarioComponent implements OnInit {
+  usuario = new UsuarioModel();
 
-  constructor() { }
+  constructor(private usuarioSvc: UsuarioService) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  guardar(forma: NgForm) {
+
+    this.usuarioSvc.crearUsuario(this.usuario).subscribe(res=>{
+      console.log(res);
+    })
+ 
   }
-
 }

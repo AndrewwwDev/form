@@ -11,7 +11,7 @@
   <!-- Table -->
   <table class="table mt-3 animate__animated animate__fadeIn">
     <thead class="thead-dark">
-      <tr> 
+      <tr>
         <th scope="col">#</th>
         <th scope="col">Nombre</th>
         <th scope="col">Email</th>
@@ -20,16 +20,23 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
+      <tr *ngFor="let usuario of usuarios; let i = index">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ usuario.nombre }}</td>
+        <td>{{ usuario.email }}</td>
         <td>
-          <label for="" class="badge badge-success">Activo</label>
-          <label for="" class="badge badge-danger">Inactivo</label>
+          <label *ngIf="usuario.estado" for="" class="badge badge-success"
+            >Activo</label
+          >
+          <label *ngIf="!usuario.estado" for="" class="badge badge-danger"
+            >Inactivo</label
+          >
         </td>
         <td>
-          <button class="btn btn-info mr-1">
+          <button
+            class="btn btn-info mr-1"
+            [routerLink]="['/usuario', usuario.id]"
+          >
             <i class="fa fa-pencil"></i>
           </button>
           <button class="btn btn-danger"><i class="fa fa-trash"></i></button>

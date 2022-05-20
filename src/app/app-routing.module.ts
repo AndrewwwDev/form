@@ -6,7 +6,7 @@ import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 
 const routes: Routes = [
   { path: 'usuarios', component: UsuariosComponent },
-  // { path: 'usuario/:id', component: UsuarioComponent },
+  { path: 'usuario/:id', component: UsuarioComponent },
   { path: 'usuario', component: UsuarioComponent },
   { path: '**', pathMatch: 'full', redirectTo: 'usuarios' },
 ];

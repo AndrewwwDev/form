@@ -32,4 +32,25 @@ export class UsuarioService {
 
     return this.http.put(`${URL}/usuarios/${usuario.id}.json`, usuarioTemp);
   }
+
+  getUsuarios() {
+    return this.http.get(`${URL}/usuarios.json`).pipe(map(this.arreglo));
+  }
+  getUsuario(id: string) {
+    return this.http.get(`${URL}/usuarios/${id}.json`);
+  }
+  private arreglo(usuariosObj: any) {
+    const usuarios: UsuarioModel[] = [];
+
+    if (usuariosObj === null) {
+      return null;
+    }
+
+    for (let resgistro in usuariosObj) {
+      usuariosObj[resgistro].id = resgistro;
+      usuarios.push(usuariosObj[resgistro]);
+    }
+    console.log(usuarios);
+    return usuarios;
+  }
 }
